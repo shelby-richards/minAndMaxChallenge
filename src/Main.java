@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -6,24 +7,24 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         double min=0;
         double max=0;
-        double[] numbers = {};
+        ArrayList<Double> numbersEntered = new ArrayList<>();
         do{
             System.out.println("Enter any number, or any character to quit.");
             String input = sc.nextLine();
 
             try {
                 double number = Double.parseDouble(input);
-
+                if (numbersEntered.contains(number)){
+                    go = false;
+                }
+                numbersEntered.add(number);
                 if (number > max){
                     max = number;
-                }else if (number == max){
-                    go = false;
                 }
                 if (number < min) {
                     min = number;
-                }else if (number == min){
-                    go = false;
                 }
+
             }catch (NumberFormatException nfe){
                 go = false;
             }
